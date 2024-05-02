@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbb4efyha5bby"]
+
+[ext_resource type="Script" path="res://card.gd" id="1_j8vh8"]
+[ext_resource type="Texture2D" uid="uid://cnas0g03ehq0q" path="res://card_dummy_0.png" id="2_sfqed"]
+[ext_resource type="Texture2D" uid="uid://dbmfas5wltwdx" path="res://card_dummy_shadow.png" id="3_uonkj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q26p2"]
+size = Vector2(98, 142)
+
+[node name="Card" type="Node2D"]
+script = ExtResource("1_j8vh8")
+
+[node name="CardSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.980392, 0.941176, 1)
+texture = ExtResource("2_sfqed")
+
+[node name="Area2D" type="Area2D" parent="CardSprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSprite/Area2D"]
+shape = SubResource("RectangleShape2D_q26p2")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_uonkj")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -20.0
+offset_top = -31.0
+offset_right = 20.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 50
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardTitle" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -50.0
+offset_top = -72.0
+offset_right = 50.0
+offset_bottom = -44.0
+theme_override_font_sizes/font_size = 15
+text = "Upward Cut"
+horizontal_alignment = 1
+
+[connection signal="input_event" from="CardSprite/Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="CardSprite/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CardSprite/Area2D" to="." method="_on_area_2d_mouse_exited"]
